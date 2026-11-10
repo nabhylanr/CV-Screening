@@ -1,0 +1,11 @@
+case_id,dataset_split,dataset_row,label_dataset,posisi_jd,observasi_awal_perlu_ditinjau
+DS01,test,547,No Fit,Business Analyst (10+ tahun),Wajar: CV data analyst ~2 tahun; JD minta 10+ tahun business analysis
+DS02,test,1364,Good Fit,Business Analyst Level III,Dipertanyakan: JD minta 2+ tahun memimpin sebagai BA; CV data analyst/konsultan tanpa pengalaman BA eksplisit
+DS03,test,1180,Potential Fit,Financial/procurement analyst (SAP),Cukup wajar: kuat di analisis data; tidak ada SAP / purchase order / Fortune 500 CPG
+DS04,test,1056,Potential Fit,Embedded software engineer (5+ tahun),Dipertanyakan: CV iOS/Java; tidak ada embedded / power conversion
+DS05,test,363,No Fit,ServiceNow Business Analyst,Wajar: CV electrical design engineer
+DS06,test,212,No Fit,Senior Tax Accountant,Wajar: CV geologist / mud logger
+DS07,test,1664,Good Fit,Accounting professional (CPG),Cukup wajar: B.S. Accounting + staff accountant; pengalaman < 5 tahun yang diminta
+DS08,test,1750,Good Fit,Software Engineer II (Heroku/Salesforce),Dipertanyakan: tidak ada Heroku / Salesforce di CV
+DS09,test,1052,Potential Fit,Business Analyst (Pega / rule engine),Dipertanyakan: CV software dev intern; tidak ada BA atau Pega
+DS10,test,1454,Good Fit,Fund accountant supervisor (CPA wajib),Dipertanyakan: CPA license dan pengalaman supervisi tidak disebut di CV

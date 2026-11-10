@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Secrets (API key)
+.streamlit/secrets.toml
+.env
+
+# Hasil uji coba mentah (berisi output AI)
+results_dataset/
+
+# macOS
+.DS_Store

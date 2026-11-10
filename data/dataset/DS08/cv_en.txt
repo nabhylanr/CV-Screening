@@ -1,0 +1,59 @@
+Summary•        
+Over
+Three years of extensive experience as a Front-End UI Developer with solid
+understanding of database designing, development and installation of different
+modules. 
+
+•        
+Professional
+understanding of System development life cycle (SDLC) as well as various phases such as Analysis Design,
+Development and Testing. 
+
+•        
+Expert
+in developing User Interface (UI) applications and professional web
+applications using JavaScript, JSP, XML,
+HTML5 /DHTML, DOM, XHTML, jQuery, CSS3, and Ajax.• Extensive
+experience in various UI widgets using JavaScript
+libraries like Angular.js, Node.js and developing Rich Internet Applications RIA.• Experience
+in implementing Web Services (RESTful/SOAP)
+and REST services.•  Experience
+in  SQL Server and T-SQL
+servers.• Experience in Hadoop,
+Hive, Postgres, Cassandra, Mongo.• Sound
+knowledge in working with browsers compatibility issues with browsers like IE, Firefox, Safari, Opera, Chrome.Good
+experience in automation testing
+with Mocha and Jasmine using Selenium.•  Good
+Experience in Jasmine framework to
+write the unit tests in order to
+prevent the functional defects from being deployed to production.•Good
+knowledge in the configuration management and version control software like TFS, Bit bucket, GitHub.• Highly motivated self-starter, hard worker, team player and research orientated.•Flexible, team player, “get-it-done” personality.
+SkillsProgramming Languages: C, Java, PythonOperating Systems: WindowsDatabase: MySQLWeb Technologies: HTML, CSS, JavaScript, JQuery, Java Servlets, BootstrapProject DetailsPlay TombolaDuration: 30 DaysTeam size: 1 Java, MySQL, CSS, JavaScript, JQuery, HTML, Bootstrap, Java Servlets
+ExperienceSoftware Engineer Intern,10/2016-CurrentViasat Inc.–AR,State,Responsibilities:
+
+·  Designed
+Frontend with in VB Scripting.
+
+·        
+Developed
+Single page application using the Router concept.
+
+·        
+Used  CISA,
+PYTHON,CISM.
+
+·        
+ Used Powershell,  Perl for fast going application.
+
+·        
+Improved the performance of the application by replacing the
+existing process and controls with most suitable process flow, optimized
+queries and code snippets
+
+·        
+Introduced
+methodologies and best practices that enhanced product definition, release processes and customization of applications
+to user needs.
+Education and TrainingMaster Of Science:Information Technology,Expected in--Hyderabad,GPA:Status-Information TechnologyB.Tech:Electrical and Electronics Engineering,Expected in2016--,GPA:Status-Electrical and Electronics Engineering Kakinada with 70.40% marksDiploma:Electrical and Electronics Engineering,Expected in2013--,GPA:Status-Electrical and Electronics Engineering from SBTET Andhra Pradesh with 69.49% marks
+*S.S.C. (2010) from State Board of Andhra Pradesh with 74.00% marks
+SkillsC, CSS, Database, HTML, Java, Java Servlets, JavaScript, JQuery, Windows, MySQL, Operating Systems, Developer, Programming, Python

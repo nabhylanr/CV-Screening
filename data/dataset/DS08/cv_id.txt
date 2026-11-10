@@ -1,0 +1,58 @@
+Ringkasan•
+Lebih dari
+tiga tahun pengalaman luas sebagai Front-End UI Developer dengan pemahaman
+kuat tentang perancangan basis data, pengembangan, dan instalasi berbagai
+modul.
+
+•
+Pemahaman
+profesional tentang System development life cycle (SDLC) serta berbagai fasenya seperti Analisis, Desain,
+Pengembangan dan Pengujian.
+
+•
+Ahli
+dalam mengembangkan aplikasi User Interface (UI) dan aplikasi web profesional
+menggunakan JavaScript, JSP, XML,
+HTML5 /DHTML, DOM, XHTML, jQuery, CSS3, dan Ajax.• Pengalaman
+luas dalam berbagai widget UI menggunakan library JavaScript
+seperti Angular.js, Node.js serta mengembangkan Rich Internet Applications RIA.• Berpengalaman
+mengimplementasikan Web Services (RESTful/SOAP)
+dan layanan REST.•  Berpengalaman
+dengan SQL Server dan server T-SQL.• Berpengalaman dengan Hadoop,
+Hive, Postgres, Cassandra, Mongo.• Pengetahuan
+baik dalam menangani masalah kompatibilitas browser seperti IE, Firefox, Safari, Opera, Chrome.Pengalaman
+baik dalam pengujian otomatis
+dengan Mocha dan Jasmine menggunakan Selenium.•  Pengalaman
+baik dengan framework Jasmine untuk
+menulis unit test guna
+mencegah cacat fungsional masuk ke production.•Pengetahuan
+baik tentang manajemen konfigurasi dan perangkat lunak version control seperti TFS, Bit bucket, GitHub.• Sangat termotivasi, inisiatif tinggi, pekerja keras, pemain tim dan berorientasi riset.•Fleksibel, pemain tim, berkepribadian "tuntas mengerjakan".
+KeahlianBahasa Pemrograman: C, Java, PythonSistem Operasi: WindowsBasis Data: MySQLTeknologi Web: HTML, CSS, JavaScript, JQuery, Java Servlets, BootstrapDetail ProyekPlay TombolaDurasi: 30 HariUkuran tim: 1 Java, MySQL, CSS, JavaScript, JQuery, HTML, Bootstrap, Java Servlets
+PengalamanSoftware Engineer Intern,10/2016-SekarangViasat Inc.–AR,State,Tanggung jawab:
+
+·  Merancang
+frontend dengan VB Scripting.
+
+·
+Mengembangkan
+single page application menggunakan konsep Router.
+
+·
+Menggunakan CISA,
+PYTHON,CISM.
+
+·
+ Menggunakan Powershell, Perl untuk aplikasi yang cepat.
+
+·
+Meningkatkan performa aplikasi dengan mengganti
+proses dan kontrol yang ada dengan alur proses paling sesuai, mengoptimalkan
+query dan potongan kode
+
+·
+Memperkenalkan
+metodologi dan praktik terbaik yang meningkatkan definisi produk, proses rilis, dan kustomisasi aplikasi
+sesuai kebutuhan pengguna.
+Pendidikan dan PelatihanMaster Of Science:Teknologi Informasi,Perkiraan lulus--Hyderabad,IPK:Status-Teknologi InformasiB.Tech:Teknik Elektro dan Elektronika,Perkiraan lulus2016--,IPK:Status-Teknik Elektro dan Elektronika Kakinada dengan nilai 70.40%Diploma:Teknik Elektro dan Elektronika,Perkiraan lulus2013--,IPK:Status-Teknik Elektro dan Elektronika dari SBTET Andhra Pradesh dengan nilai 69.49%
+*S.S.C. (2010) dari State Board of Andhra Pradesh dengan nilai 74.00%
+KeahlianC, CSS, Basis Data, HTML, Java, Java Servlets, JavaScript, JQuery, Windows, MySQL, Sistem Operasi, Developer, Pemrograman, Python
