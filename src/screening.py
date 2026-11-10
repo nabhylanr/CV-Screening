@@ -18,11 +18,14 @@ import requests
 from cvscreen import evidence_in_cv, extract_json
 
 PROVIDERS = {
-    "Gemini (Google AI Studio)": {"kind": "gemini", "model": "gemini-2.5-flash", "base_url": ""},
-    "Groq": {"kind": "openai", "model": "openai/gpt-oss-20b", "base_url": "https://api.groq.com/openai/v1"},
+    "Gemini (Google AI Studio)": {"kind": "gemini", "model": "gemini-3.5-flash", "base_url": ""},
+    "Groq": {"kind": "openai", "model": "openai/gpt-oss-120b", "base_url": "https://api.groq.com/openai/v1"},
+    "Mistral": {"kind": "openai", "model": "mistral-small-latest", "base_url": "https://api.mistral.ai/v1"},
     "Ollama (lokal, tanpa internet)": {"kind": "openai", "model": "llama3.1", "base_url": "http://localhost:11434/v1"},
     "OpenAI-compatible lain": {"kind": "openai", "model": "", "base_url": ""},
 }
+
+KEY_ENV = {"Gemini (Google AI Studio)": "GEMINI_API_KEY", "Groq": "GROQ_API_KEY", "Mistral": "MISTRAL_API_KEY"}
 
 SKILL_HEADERS = re.compile(r"^\s*(skills?|keahlian|kemampuan|keterampilan|technical skills|tools|kompetensi|summary|ringkasan|profil[e]?|about( me)?|tentang( saya)?)\b", re.I)
 INJECTION = re.compile(r"(ignore (all )?(previous|prior) instructions|abaikan (semua )?instruksi|rate this (candidate|resume)|"
@@ -89,34 +92,73 @@ Rules:
 
 
 # ---------- pemanggilan model ----------
-def call_llm(prompt: str, provider: str, api_key: str, model: str, base_url: str = "", retries: int = 2) -> str:
+LAST_CALL: dict = {}  # parameter yang benar-benar dipakai pada panggilan terakhir (untuk dicatat di log)
+
+
+def call_llm(prompt: str, provider: str, api_key: str, model: str, base_url: str = "", retries: int = 3) -> str:
     kind = PROVIDERS[provider]["kind"]
+    LAST_CALL.clear()
+    LAST_CALL["temperature"] = 0
     for attempt in range(retries + 1):
         if kind == "gemini":
+            gurl = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+            gcfg = {"temperature": 0, "responseMimeType": "application/json"}
+            r = requests.post(gurl, params={"key": api_key}, timeout=180,
+                              json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gcfg})
+            if r.status_code == 400 and ("mime" in r.text.lower() or "json mode" in r.text.lower()):
+                gcfg.pop("responseMimeType")  # mis. model Gemma tidak mendukung mode JSON paksa
+                r = requests.post(gurl, params={"key": api_key}, timeout=180,
+                                  json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gcfg})
+        elif kind == "anthropic":
             r = requests.post(
-                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                params={"key": api_key}, timeout=120,
-                json={"contents": [{"parts": [{"text": prompt}]}],
-                      "generationConfig": {"temperature": 0, "responseMimeType": "application/json"}},
+                f"{(base_url or 'https://api.anthropic.com/v1').rstrip('/')}/messages", timeout=180,
+                headers={"x-api-key": api_key, "anthropic-version": "2023-06-01"},
+                json={"model": model, "max_tokens": 4096, "temperature": 0,
+                      "messages": [{"role": "user", "content": prompt}]},
             )
         else:
+            url = f"{base_url.rstrip('/')}/chat/completions"
+            headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
             body = {"model": model, "temperature": 0, "messages": [{"role": "user", "content": prompt}],
                     "response_format": {"type": "json_object"}}
-            headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
-            r = requests.post(f"{base_url.rstrip('/')}/chat/completions", json=body, headers=headers, timeout=180)
-            if r.status_code == 400:  # sebagian server tidak mendukung response_format
-                body.pop("response_format")
-                r = requests.post(f"{base_url.rstrip('/')}/chat/completions", json=body, headers=headers, timeout=180)
-        if r.status_code == 429 and attempt < retries:
-            time.sleep(15 * (attempt + 1))
+            r = requests.post(url, json=body, headers=headers, timeout=180)
+            # Sebagian model/server menolak response_format atau temperature: coba ulang tanpa keduanya
+            for key in ("response_format", "temperature"):
+                if r.status_code == 400 and key in body:
+                    body.pop(key)
+                    if key == "temperature":
+                        LAST_CALL["temperature"] = "default penyedia (0 ditolak)"
+                    r = requests.post(url, json=body, headers=headers, timeout=180)
+        # Gangguan sementara: rate limit (429), server sibuk (5xx), atau penolakan jaringan sesaat (403 "network")
+        transient = r.status_code in (429, 500, 502, 503, 504) or (
+            r.status_code == 403 and "network" in r.text.lower())
+        if r.status_code == 429 and ("perday" in r.text.lower() or "per day" in r.text.lower()):
+            raise RuntimeError("429 kuota harian habis: " + r.text[:200])
+        if transient and attempt < retries:
+            wait = 15 * (attempt + 1)
+            print(f"   ...{r.status_code}, coba lagi dalam {wait} detik (percobaan {attempt + 2}/{retries + 1})")
+            time.sleep(wait)
             continue
         if r.status_code >= 400:
             raise RuntimeError(f"{r.status_code}: {r.text[:300]}")
         data = r.json()
         if kind == "gemini":
-            return data["candidates"][0]["content"]["parts"][0]["text"]
+            u = data.get("usageMetadata", {}) or {}
+            LAST_CALL.update(input_tokens=u.get("promptTokenCount"),
+                             output_tokens=(u.get("candidatesTokenCount") or 0) + (u.get("thoughtsTokenCount") or 0))
+        else:
+            u = data.get("usage", {}) or {}
+            LAST_CALL.update(input_tokens=u.get("prompt_tokens", u.get("input_tokens")),
+                             output_tokens=u.get("completion_tokens", u.get("output_tokens")))
+        if kind == "gemini":
+            # Model "thinking" (mis. Gemma 4) mengirim bagian berpikir (thought=True) sebelum jawaban: ambil jawabannya saja
+            parts = data["candidates"][0].get("content", {}).get("parts", [])
+            answer = "".join(p.get("text", "") for p in parts if not p.get("thought"))
+            return answer or (parts[-1].get("text", "") if parts else "")
+        if kind == "anthropic":
+            return "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
         return data["choices"][0]["message"]["content"]
-    raise RuntimeError("Batas permintaan (rate limit) tercapai. Coba lagi beberapa saat.")
+    raise RuntimeError("Gagal setelah beberapa percobaan (server sibuk atau batas rate). Coba lagi beberapa saat.")
 
 
 # ---------- analisis ----------

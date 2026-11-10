@@ -3,8 +3,12 @@ import os
 import sys
 from pathlib import Path
 
+import warnings
+
 import pandas as pd
 import streamlit as st
+
+warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL")
 
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 import screening as S  # noqa: E402
@@ -18,6 +22,20 @@ Applies basic statistics (descriptive statistics, hypothesis testing)"""
 EXAMPLE_NICE = """Experience with A/B testing or experiment analysis
 Experience in edtech or presenting insights to non-technical stakeholders"""
 CAT_ORDER = {"Good Fit": 0, "Potential Fit": 1, "No Fit": 2}
+
+
+def _load_env():
+    """Ambil API key dari file .env di folder ini (jika ada)."""
+    env = Path(__file__).parent / ".env"
+    if env.exists():
+        for line in env.read_text(encoding="utf-8").splitlines():
+            if "=" in line and not line.lstrip().startswith("#"):
+                k, v = line.split("=", 1)
+                if v.strip():
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
+_load_env()
 
 
 def secret(name: str) -> str:
@@ -46,9 +64,7 @@ with st.expander("Pengaturan model AI"):
     base_url = preset["base_url"]
     if preset["kind"] == "openai":
         base_url = st.text_input("Base URL", value=preset["base_url"])
-    key_name = {"gemini": "GEMINI_API_KEY"}.get(preset["kind"], "OPENAI_COMPAT_API_KEY")
-    if provider == "Groq":
-        key_name = "GROQ_API_KEY"
+    key_name = S.KEY_ENV.get(provider, "OPENAI_COMPAT_API_KEY")
     api_key = st.text_input("API key", value=secret(key_name), type="password",
                             help=f"Bisa juga diisi lewat environment variable / secrets: {key_name}")
     anonymize = st.checkbox("Samarkan nama & kontak sebelum dikirim ke AI", value=True)
@@ -65,7 +81,7 @@ if run:
         problems.append("Unggah minimal satu CV.")
     if not must:
         problems.append("Isi minimal satu must-have.")
-    if preset["kind"] == "gemini" and not api_key:
+    if provider in S.KEY_ENV and not api_key:
         problems.append("Isi API key di Pengaturan model AI.")
     if not model:
         problems.append("Isi nama model.")

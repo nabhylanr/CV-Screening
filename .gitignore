@@ -15,3 +15,9 @@ results_dataset/
 
 # macOS
 .DS_Store
+
+# Hasil pilot
+results_pilot/
+results_variants/
+logs/
+results_arsip/
