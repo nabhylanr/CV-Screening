@@ -1,0 +1,166 @@
+```json
+{
+  "candidates": [
+    {
+      "candidate_id": "C1",
+      "score": 83,
+      "category": "Good Fit",
+      "requirements": [
+        {
+          "id": "R1",
+          "status": "met",
+          "evidence": "Wrote SQL queries in PostgreSQL to aggregate weekly active learners and course completion by cohort."
+        },
+        {
+          "id": "R2",
+          "status": "met",
+          "evidence": "Cleaned and merged event logs with Python pandas, reducing report preparation time from 2 days to 3 hours."
+        },
+        {
+          "id": "R3",
+          "status": "met",
+          "evidence": "Built a Looker Studio dashboard used by the content team to monitor course completion."
+        },
+        {
+          "id": "R4",
+          "status": "met",
+          "evidence": "Analysed an A/B test on a new onboarding flow using a two-proportion z-test and presented the result to the product"
+        },
+        {
+          "id": "R5",
+          "status": "met",
+          "evidence": "Analysed an A/B test on a new onboarding flow using a two-proportion z-test and presented the result to the product"
+        },
+        {
+          "id": "R6",
+          "status": "met",
+          "evidence": "Analysed an A/B test on a new onboarding flow using a two-proportion z-test and presented the result to the product"
+        }
+      ],
+      "flags": [],
+      "summary": "demo",
+      "rank": 1
+    },
+    {
+      "candidate_id": "C2",
+      "score": 59,
+      "category": "Potential Fit",
+      "requirements": [
+        {
+          "id": "R1",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R2",
+          "status": "met",
+          "evidence": "Cleaned 15,000 product reviews with pandas and summarised rating distributions by category."
+        },
+        {
+          "id": "R3",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R4",
+          "status": "met",
+          "evidence": "Prepared exercises on descriptive statistics, confidence intervals, and t-tests for 120 students."
+        },
+        {
+          "id": "R5",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R6",
+          "status": "not_met",
+          "evidence": ""
+        }
+      ],
+      "flags": [],
+      "summary": "demo",
+      "rank": 3
+    },
+    {
+      "candidate_id": "C3",
+      "score": 16,
+      "category": "No Fit",
+      "requirements": [
+        {
+          "id": "R1",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R2",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R3",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R4",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R5",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R6",
+          "status": "not_met",
+          "evidence": ""
+        }
+      ],
+      "flags": [],
+      "summary": "demo",
+      "rank": 4
+    },
+    {
+      "candidate_id": "C4",
+      "score": 64,
+      "category": "Potential Fit",
+      "requirements": [
+        {
+          "id": "R1",
+          "status": "met",
+          "evidence": "Wrote MySQL queries to summarise member savings and loan repayments per branch."
+        },
+        {
+          "id": "R2",
+          "status": "met",
+          "evidence": "Cleaned transaction exports with Python pandas before monthly reporting."
+        },
+        {
+          "id": "R3",
+          "status": "met",
+          "evidence": "Built a Power BI dashboard for branch managers to monitor overdue loans."
+        },
+        {
+          "id": "R4",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R5",
+          "status": "not_met",
+          "evidence": ""
+        },
+        {
+          "id": "R6",
+          "status": "not_met",
+          "evidence": ""
+        }
+      ],
+      "flags": [],
+      "summary": "demo",
+      "rank": 2
+    }
+  ]
+}
+```
